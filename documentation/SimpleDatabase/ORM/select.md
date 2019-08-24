@@ -6,7 +6,7 @@ $x = new databases\TestTable;
 $qu = $x->select('*')->get();
 
 foreach ($qu as $xasfdObj) {
-    echo $obj->username;
+    echo $obj["username"];
 }
 ```
 

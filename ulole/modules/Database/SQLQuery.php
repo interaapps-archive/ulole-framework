@@ -2,7 +2,7 @@
 
 namespace ulole\modules\Database;
 
-class MySQLQuery {
+class SQL {
     public $query, $con;
     function __construct($qu, $con) {
         $this->con = $con;
@@ -13,11 +13,6 @@ class MySQLQuery {
     function query($str) {
         ($this->con)->query($str);
         return $this;
-    }
-
-    function get() {
-        //$forAll = ($this->query)->fetch_object();
-        //while
     }
 
     function getObject() {

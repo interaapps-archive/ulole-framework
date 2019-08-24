@@ -10,7 +10,9 @@ class DatabaseObject {
             $ai=false,
             $default=null,
             $defaultNull=false,
-            $collate=false;
+            $collate=false,
+            $custom="",
+            $currentTimestamp=false;
 
     public function __construct($fieldType, $fieldName) {
         $this->type = $fieldType;
@@ -29,6 +31,11 @@ class DatabaseObject {
 
     public function unique() {
         $this->unique = true;
+        return $this;
+    }
+
+    public function args($args) {
+        $this->custom = $args;
         return $this;
     }
 

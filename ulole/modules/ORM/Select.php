@@ -24,19 +24,11 @@ class Select extends Selector {
     }
 
 
-    function get() { //echo $this->query.';';
-        $qu = $this->con->query($this->query.';');
-        $outArray = [];
-        while($obj=$qu->fetch_object()) {
-            array_push($outArray, $obj);
-        }
-        return $outArray;
+    function get() {
+        return $this->con->query($this->query.';')->fetchAll();        
     }
 
-    function first() { //echo $this->query.';';
-        $qu = $this->con->query($this->query.';');
-        while($obj=$qu->fetch_object())
-            $out = $obj;
-        return $out;
+    function first() {
+        return $this->con->query($this->query.';')->fetch();
     }
 }

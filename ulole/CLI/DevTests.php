@@ -13,6 +13,6 @@ $CLI = new Custom();
 
 
 $CLI->register("a", function($args) {
-    echo ulole\core\classes\util\secure\AES::encrypt("hallo welt", "mein key");
+    echo (new \databases\migrate\MessagesTable())->database();
     return "";
 });

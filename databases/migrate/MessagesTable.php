@@ -9,7 +9,6 @@ class MessagesTable extends Migrate {
             $table->int("id")->ai();
             $table->string("username");
             $table->string("password", 255);
-            $table->enum("enumTest", ["val1","val2"]);
         });
     }
 }

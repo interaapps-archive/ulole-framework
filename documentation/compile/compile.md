@@ -1,10 +1,10 @@
 # Compile
-Compile is a Template Engine Builder for view.php and a Javascript and CSS bundler.
+Compile is a Template Engine and a Javascript and CSS bundler.
 
 
 ## PHP Render engine (view.php)
 To use it you have just to add a file into the folder (It does work also recursive) resources/compile/views with the extension view.php!
-If you'll execute ```php ulole compile``` it will copy it into the resources/views folder in a "compiled form"!
+If you'll execute ```php cli compile``` it will copy it into the resources/views folder in a "compiled form"!
 
 More information in the view.php.md file!
 

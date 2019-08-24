@@ -1,5 +1,5 @@
 # Javascript and CSS bundler
-If you don't want to use webpack with nodejs you can use compile.
+If you don't want to use webpack with nodejs you can use Ulole-Compile.
 To use it you have to go in to the folder resources/compile/js or ~/css and add a compile.json. In it you can add "compile" "rules".
 
 #### Example (For javascript)

@@ -1,3 +1,6 @@
+/* 
+   If you don't want to use this, you can use UloleCompile or write directly into CSS and JS Files (public/assets/js | public/assets/css)
+ */
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSASS = new ExtractTextPlugin('../css/style.css');

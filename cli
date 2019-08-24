@@ -75,6 +75,9 @@ if ($argv[1] == "server") {
 } elseif ($argv[1] == "generate") {
     require "ulole/CLI/Generate.php";
     $CLI->run($argv[1], $argv);
+} elseif ($argv[1] == "migrate") {
+    require "ulole/CLI/Migrate.php";
+    $CLI->run($argv[1], $argv);
 }
 
 
