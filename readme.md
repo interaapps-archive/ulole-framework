@@ -1,7 +1,7 @@
 <h1 style="font-size: 27px; text-align: center">Ulole Framework (v 1.0.028 Development)</h1>
-`
+```
 This is just the development version. If we are ready soon there is a new version! :D
-`
+```
 ## Choosefriendly
 You don't want to use Composer or NPM? You don't want to use WebPack? You don't need to! Ulole-Framework don't need any extra PackageManager
 Information: NPM and Composer are preinizalized, you can simply remove them.
