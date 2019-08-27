@@ -1,4 +1,4 @@
-<h1 style="font-size: 27px; text-align: center">Ulole Framework (v 1.0.028 Development)</h1>
+<p style="font-size: 27px; text-align: center">Ulole Framework (v 1.0.028 Development)</p>
 ```
 This is just the development version. If we are ready soon there is a new version! :D
 ```
