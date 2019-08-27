@@ -23,5 +23,4 @@ require "app/route.php";
 $router->setDirectories($views_dir, $templates_dir);
 $router->set($route);
 
-
 $router->route();

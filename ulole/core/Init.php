@@ -25,7 +25,7 @@ if (file_exists("env.json")) {
         foreach ($config_env->databases as $db=>$values) {
             global $SQL_DATABASES;
             
-            $SQL_DATABASES[$db] = new ulole\modules\Database\SQL(
+            $SQL_DATABASES[$db] = new ulole\modules\ORM\SQL(
                 $values->username,
                 $values->password,
                 $values->database,

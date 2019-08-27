@@ -9,6 +9,7 @@ $CLI = new Custom();
 
 $CLI->showArgsOnError = false;
 
+
 $CLI->register("myFunction", function($args) {
     echo "This is my custom function :D!\n";
     return "You can also return a string to echo\n";

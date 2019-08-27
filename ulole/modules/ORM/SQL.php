@@ -1,8 +1,8 @@
 <?php
 
-namespace ulole\modules\Database;
+namespace ulole\modules\ORM;
 
-class SQL {
+class SQL { 
     public $con;
     function __construct($username, $password=false, $database=false,$host=false,$port=3306, $driver="mysql") {
         if ( ($password === false) && ($database === false) && ($host === false) ) {
@@ -19,10 +19,6 @@ class SQL {
             $db_driver    =  $driver;
         }
         $this->con = new \PDO($db_driver.':host='.$db_host.';dbname='.$db_database, $db_username, $db_password);;
-    }
-
-    function query($str) {
-        return (new ulole\modules\Database\SQLQuery($str, $this->con));
     }
 
     function getObject() {
