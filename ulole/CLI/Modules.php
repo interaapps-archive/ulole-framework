@@ -28,7 +28,7 @@ function deleteDir($dirPath) {
 function install($type, $module) {
     $useNameInstead = false;
     if (strpos($type, ":") !== false) {
-        $useNameInstead = "ulole/usermodules/".getStringBetween($type, ":", "");
+        $useNameInstead = "modules/".getStringBetween($type, ":", "");
         $type = str_replace( (":".getStringBetween($type, ":", "")), "", $type);
     }
     
@@ -43,14 +43,14 @@ function install($type, $module) {
         $link = str_replace("https://github.com/", "", $module);
         $repos = json_decode(file_get_contents("https://api.github.com/repos/".$link, false, $context));;
         $downloadLink = "https://api.github.com/repos/".$link."/zipball/master";
-        $enddir = 'ulole/usermodules/'.$repos->name;
+        $enddir = 'modules/'.$repos->name;
     } elseif ($type==strtolower("local")) {
         $downloadLink = $module;
-        $enddir = 'ulole/usermodules/'.preg_replace('/\\.[^.\\s]{3,4}$/', '', basename($module));
+        $enddir = 'modules/'.preg_replace('/\\.[^.\\s]{3,4}$/', '', basename($module));
 
     } elseif ($type==strtolower("web")) {
         $downloadLink = $module;
-        $enddir = 'ulole/usermodules/'.preg_replace('/\\.[^.\\s]{3,4}$/', '', basename($module));
+        $enddir = 'modules/'.preg_replace('/\\.[^.\\s]{3,4}$/', '', basename($module));
     } else echo "Type not found: ".$type;
     
     if ($useNameInstead !== false)
@@ -129,7 +129,7 @@ function getStringBetween($string, $start, $end){
 
 $CLI->register("install", function($args) {
   $config_env = json_decode(file_get_contents("conf.json"));
-  echo "The modules will be inserted into the ulole/usermodules folder";
+  echo "The modules will be inserted into the modules folder";
   foreach ($config_env->modules as $type=>$branch) {
    install($type, $branch);
   }
@@ -161,10 +161,10 @@ $CLI->register("test", function($args) {
                     }
             
         if ($dirInZip !== false)
-            rename("tempdir", "ulole/usermodules/moduletest");
+            rename("tempdir", "modules/moduletest");
         else
-            rename("tempdir", "ulole/usermodules/moduletest"); 
-        // rename("tempdir", "ulole/usermodules/moduletest");
+            rename("tempdir", "modules/moduletest"); 
+        // rename("tempdir", "modules/moduletest");
     } else {
         echo "Couldn't unpack the zip";
     }
