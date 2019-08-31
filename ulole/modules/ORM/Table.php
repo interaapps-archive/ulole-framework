@@ -14,16 +14,21 @@ class Table {
         foreach ($this as $a=>$b) {
             if ($a !== "_table_name_" && $a !== "__database__" && $a !== "__databaseObj__")
                 if ($query_values=="") {
-                    $query_values .= "?";
-                    $query_keys .= "`".$a."`";
-                    array_push($preparedValues, $b);
+                    if (isset($b)) {
+                        $query_values .= "?";
+                        $query_keys .= "`" . $a . "`";
+                        array_push($preparedValues, $b);
+                    }
                 } else {
-                    $query_values .= ", ?";
-                    $query_keys .= ", `".$a."`";
-                    array_push($preparedValues, $b);
+                    if (isset($b)) {
+                        $query_values .= ", ?";
+                        $query_keys .= ", `" . $a . "`";
+                        array_push($preparedValues, $b);
+                    }
                 }
         }
         $query = "INSERT INTO `".$this->_table_name_."` (".$query_keys.") VALUES (".$query_values.");";
+        echo $query;
         $statement = $con->prepare($query);
         return $statement->execute($preparedValues);
     }

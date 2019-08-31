@@ -5,24 +5,24 @@
     Inititializing configs and more
 */
 
-global $config, $config_env, $SQL_DATABASES;
+global $ULOLE_CONFIG, $ULOLE_CONFIG_ENV, $SQL_DATABASES;
 
-$config = json_decode(file_get_contents("conf.json"));
+$ULOLE_CONFIG = json_decode(file_get_contents("conf.json"));
 
-\ulole\core\classes\Lang::setLang((isset($config->options->defaultlang)) ? $config->options->defaultlang : "en");
+\ulole\core\classes\Lang::setLang((isset($ULOLE_CONFIG->options->defaultlang)) ? $ULOLE_CONFIG->options->defaultlang : "en");
 
-if ((isset($config->options->detectlanguage) ? $config->options->detectlanguage : false)) {
+if ((isset($ULOLE_CONFIG->options->detectlanguage) ? $ULOLE_CONFIG->options->detectlanguage : false)) {
     if (\file_exists("resources/languages/".substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2).".json"))
     \ulole\core\classes\Lang::setLang(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
 }
 $SQL_DATABASES = [];
 
-$config_env = "";
+$ULOLE_CONFIG_ENV = "";
 if (file_exists("env.json")) {
-    $config_env = json_decode(file_get_contents("env.json"));
+    $ULOLE_CONFIG_ENV = json_decode(file_get_contents("env.json"));
 
-    if (isset($config_env->databases)) {
-        foreach ($config_env->databases as $db=>$values) {
+    if (isset($ULOLE_CONFIG_ENV->databases)) {
+        foreach ($ULOLE_CONFIG_ENV->databases as $db=> $values) {
             global $SQL_DATABASES;
             
             $SQL_DATABASES[$db] = new ulole\modules\ORM\SQL(
