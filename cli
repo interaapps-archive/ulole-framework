@@ -64,5 +64,5 @@ if ($argv[1] == "server") {
 
 
 else {
-    echo "\033[91m᮰ ERROR\033[0m: Function \"".$argv[0]."\" not found!\n";
+    echo "\033[91m᮰ ERROR\033[0m: Function \"".$argv[1]."\" not found!\n";
 }

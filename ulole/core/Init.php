@@ -8,7 +8,14 @@
 global $config, $config_env, $SQL_DATABASES;
 
 $config = json_decode(file_get_contents("conf.json"));
-
+if (file_exists("initscripts.json")) {
+    try {
+        $config_plugins = json_decode(file_get_contents("initscripts.json"));
+        if (isset($config_plugins->initscripts)) 
+            foreach ($config_plugins->initscripts as $script)
+                @include($script);
+    } catch(Exception $e) {}
+}
 \ulole\core\classes\Lang::setLang((isset($config->options->defaultlang)) ? $config->options->defaultlang : "en");
 
 if ((isset($config->options->detectlanguage) ? $config->options->detectlanguage : false)) {

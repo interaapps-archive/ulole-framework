@@ -8,9 +8,9 @@ error_reporting(E_ALL);// */
 $CLI = new Custom();
 
 function deleteDir($dirPath) {
-    if (! is_dir($dirPath)) {
+    if (!is_dir($dirPath))
         throw new InvalidArgumentException("$dirPath must be a directory");
-    }
+    
     if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
         $dirPath .= '/';
     }
@@ -21,7 +21,6 @@ function deleteDir($dirPath) {
         else 
             unlink($file);
         
-    
     rmdir($dirPath);
 }
 
@@ -84,6 +83,7 @@ function install($type, $module) {
         if (is_dir($enddir))
             deleteDir($enddir);
         if ($dirInZip !== false) {
+            echo "\n\n".$dirInZip."\n\n";
             rename("tempdir/".$dirInZip, $enddir);
         } else
             rename("tempdir", $enddir);
