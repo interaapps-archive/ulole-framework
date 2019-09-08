@@ -19,12 +19,12 @@ class Session {
 
     public function createIfNotExists($expire=null) {
         global $_SERVER;
+        $random = Str::random(100);
         if ($expire==null)
             $expire = CookieBuilder::WEEK*4;
         if (Cookies::get($this->sessionName) === null) {
-            $random = Str::random(100);
             $this->createFileIfNotExists($random);
-            (new CookieBuilder($this->sessionName))->value($random)->time($expire)->build();
+            (new CookieBuilder($this->sessionName))->value($random)->time($expire)->path("/")->build();
             return true;
         }
         return false;
@@ -35,6 +35,7 @@ class Session {
         if (!\file_exists($path)) {
 
             $sessionContents = [
+                "sessionname"=>$this->sessionName,
                 "agent"=>$_SERVER['HTTP_USER_AGENT'],
                 "created"=>\time(),
                 "data"=>['_$ulole_LAST_USAGE'=>\time()]
@@ -56,10 +57,26 @@ class Session {
         }
     }
 
+    public static function getAll($sessionName = "ulole_session") {
+        $out = [];
+        foreach (scandir("ulole/storage/sessions") as $file) {
+            if ($file != ".." && $file != "." && $file != ".gitignore") {
+                $data = json_decode(file_get_contents("ulole/storage/sessions/".$file));
+                if ($data->sessionname == $sessionName)
+                    array_push($out, $data->data);
+            }
+        }
+        return $out;
+    }
+
 
     public function deleteSession() {
         unset($this->sessionPath);
         (new CookieBuilder($this->sessionName))->value(null)->time(0)->build();
+    }
+
+    public function isset($key) {
+        return isset($this->sessionKeys->data->{$key});
     }
 
     public function get($key) {

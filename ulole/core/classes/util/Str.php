@@ -25,6 +25,10 @@ class Str {
         return $this->string;
     }
 
+    public static function contains($val, $string) {
+        return strpos($string, $val) !== false;
+    }
+
     public function appendNewLine($string) {
         $this->string .= "\n".$string;
         return $this->string;

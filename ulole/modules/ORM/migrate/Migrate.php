@@ -76,7 +76,7 @@ class Migrate {
         $this->database();
     }
 
-    public function create(String $tableName, $function) {
+    public function create($tableName, $function) {
         $migrationObject = new MigrationObjects;
         $function($migrationObject);
         //echo json_encode($migrationObject->queryArray);

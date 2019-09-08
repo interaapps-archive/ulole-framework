@@ -37,11 +37,12 @@ class Response {
     }
 
     public static function redirect($link) {
+        \ob_clean();
+        header("Location: ".$link);
         echo "<title>Redirecting to ".$link."</title>";
 		echo '<meta http-equiv="refresh" content="0;url='.$link.'">';
 		echo "<script>window.location.replace('",$link,"')</script>";
-        echo "<a href='".$link."'CLICK HERE</title>";
-        header("Location: ".$link);
+        echo "<a href='".$link."'>CLICK HERE</title>";
         exit();
     }
 
