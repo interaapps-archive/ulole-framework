@@ -90,7 +90,7 @@ class Migrate {
                    .(($obj->length!==false)?"(".$obj->length.")":"")
                    .(($obj->ai)?" AUTO_INCREMENT":"")
                    .(($obj->unique)?" UNIQUE":"")
-                   .(($obj->currentTimestamp)?" CURRENT_TIMESTAMP":"")
+                   .(($obj->currentTimestamp)?" DEFAULT CURRENT_TIMESTAMP":"")
 
                    .(($obj->default!==null)?" DEFAULT ".$obj->default:"")
                    .(($obj->defaultNull) ? " DEFAULT NULL" : "")

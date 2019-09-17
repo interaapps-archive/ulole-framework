@@ -39,6 +39,11 @@ class DatabaseObject {
         return $this;
     }
 
+    public function currentTimestamp() {
+        $this->currentTimestamp = true;
+        return $this;
+    }
+
     public function ai() {
         $this->ai = true;
         return $this;
