@@ -2,6 +2,7 @@
     "name": "uloleframework",
     "version": "1.0",
     "description": "ULOLE",
+    "directory": "./",
     "author": "InteraApps",
     "keywords": [],
     "modules": {},
