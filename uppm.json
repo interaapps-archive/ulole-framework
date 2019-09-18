@@ -8,6 +8,8 @@
         "Framework",
         "PHP"
     ],
-    "modules": {},
+    "modules": {
+        "interaapps/ulole-orm": ":github"
+    },
     "namespaces": {}
 }
