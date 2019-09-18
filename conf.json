@@ -10,9 +10,6 @@
     "options": {
         "defaultlang": "en",
         "detectlanguage": false
-    },
-    "modules": {
-        
     }
 
 }

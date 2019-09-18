@@ -7,7 +7,7 @@ error_reporting(E_ALL);// */
 
 $CLI = new Custom();
 
-function deleteDir($dirPath) {
+/*function deleteDir($dirPath) {
     if (!is_dir($dirPath))
         throw new InvalidArgumentException("$dirPath must be a directory");
     
@@ -125,12 +125,8 @@ function getStringBetween($string, $start, $end){
     }
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
-}
+}*/
 
 $CLI->register("install", function($args) {
-  $config_env = json_decode(file_get_contents("conf.json"));
-  echo "The modules will be inserted into the modules folder";
-  foreach ($config_env->modules as $type=>$branch) {
-   install($type, $branch);
-  }
+  return "Ulole-Framework are not more supported! Use 'php uppm' instead! (php uppm help)";
 });

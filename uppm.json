@@ -1,10 +1,13 @@
 {
     "name": "uloleframework",
     "version": "1.0",
-    "description": "ULOLE",
+    "description": "Ulole-Framework is a php framework!",
     "directory": "./",
     "author": "InteraApps",
-    "keywords": [],
+    "keywords": [
+        "Framework",
+        "PHP"
+    ],
     "modules": {},
     "namespaces": {}
 }

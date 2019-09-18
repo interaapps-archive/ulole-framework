@@ -1,7 +1,7 @@
 <?php
 namespace databases\migrate;
 
-use ulole\modules\ORM\migrate\Migrate;
+use modules\uloleorm\migrate\Migrate;
 
 class TestTable extends Migrate {
     public function database() {

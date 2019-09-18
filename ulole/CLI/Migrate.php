@@ -21,9 +21,9 @@ $CLI->register("database", function($args) {
     if (!isset($args[4]))
         $args[4] = "main";
     if (count($args) == 5) {
-        global $fromCLI_Database, $SQL_DATABASES;
-        if (isset($SQL_DATABASES[$args[4]])) {
-            $fromCLI_Database = $SQL_DATABASES[$args[4]];
+        global $fromCLI_Database;
+        if (isset(\modules\uloleorm\SQL::$databases[$args[4]])) {
+            $fromCLI_Database = \modules\uloleorm\SQL::$databases[$args[4]];
             echo "\n\nSQL Query:\n";
             eval('(new \databases\migrate\\'.$args[3].'Table())->migrateFromCLI($execute=0);');
             echo "\n\nDo you really want to insert into the ".$args[4]." connection the Table? [YES/no]\n";
@@ -46,9 +46,9 @@ $CLI->register("update", function($args) {
     if (!isset($args[4]))
         $args[4] = "main";
     if (count($args) == 5) {
-        global $fromCLI_Database, $SQL_DATABASES;
-        if (isset($SQL_DATABASES[$args[4]])) {
-            $fromCLI_Database = $SQL_DATABASES[$args[4]];
+        global $fromCLI_Database;
+        if (isset(\modules\uloleorm\SQL::$databases[$args[4]])) {
+            $fromCLI_Database = \modules\uloleorm\SQL::$databases[$args[4]];
             echo "\n\nWARNING!: This Method to update is very experimental. 
             Backup your Table before doing this! The Table that will be affected: ".$args[4]."
             What does it to?:

@@ -20,23 +20,11 @@ $SQL_DATABASES = [];
 $ULOLE_CONFIG_ENV = "";
 if (file_exists("env.json")) {
     $ULOLE_CONFIG_ENV = json_decode(file_get_contents("env.json"));
-
-    if (isset($ULOLE_CONFIG_ENV->databases)) {
-        foreach ($ULOLE_CONFIG_ENV->databases as $db=> $values) {
-            global $SQL_DATABASES;
-            
-            $SQL_DATABASES[$db] = new ulole\modules\ORM\SQL(
-                $values->username,
-                $values->password,
-                $values->database,
-                $values->server,
-                $values->port,
-                $values->driver
-            );
-
-        }
-    }
 }
+
+if (file_exists("modules/uloleorm/InitDatabases.php"))
+    if (class_exists("modules\uloleorm\InitDatabases"))
+        @modules\uloleorm\InitDatabases::init();
 
 if (file_exists("initscripts.json")) {
     try {
