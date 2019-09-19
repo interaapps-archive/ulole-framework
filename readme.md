@@ -1,6 +1,17 @@
-# Ulole Framework (v 1.0.028 Development)
+# Ulole Framework (v 1.0.038 Development)
 ```
 This is just the development version. If we are ready soon there is a new version! :D
+```
+## Installation
+```bash
+wget --no-cache https://raw.githubusercontent.com/interaapps/uppm/master/uppm -O uppm
+php uppm init:fast
+php uppm install ulole-framework
+```
+or
+```bash
+bash <(wget -qO- https://pastefy.ga/3dBl06Hs/raw)
+
 ```
 ## Choosefriendly
 You don't want to use Composer or NPM? You don't want to use WebPack? You don't need to! Ulole-Framework don't need any extra PackageManager
