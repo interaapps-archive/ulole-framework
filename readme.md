@@ -14,8 +14,9 @@ bash <(wget -qO- https://pastefy.ga/3dBl06Hs/raw)
 
 ```
 ## Choosefriendly
-You don't want to use Composer or NPM? You don't want to use WebPack? You don't need to! Ulole-Framework don't need any extra PackageManager
-Information: NPM and Composer are preinizalized, you can simply remove them.
+You don't want to use Composer or NPM? You don't want to use WebPack? You don't need to! Ulole-Framework don't need any extra PackageManager.
+Information: NPM and Composer are preinitialized, you can simply remove them.
+Ps. Ulole is build on UlolePHPPackageManager (UPPM). But you dont need to use it!
 ## Alternatives
 We've got some alternatives for useful tools.
 We have got to an alternative to WebPack UloleCompile. It's a simple Bundler (And a template engine) that bundels JS Codes into one file and CSS into one file. ([More in docs](/documentation/compile/JS_and_CSS_bundler.md))
