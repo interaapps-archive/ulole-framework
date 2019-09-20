@@ -11,8 +11,13 @@ php uppm install ulole-framework
 or
 ```bash
 bash <(wget -qO- https://pastefy.ga/3dBl06Hs/raw)
-
 ```
+
+Update Packages:
+```bash
+php uppm update
+```
+
 ## Choosefriendly
 You don't want to use Composer or NPM? You don't want to use WebPack? You don't need to! Ulole-Framework don't need any extra PackageManager.
 Information: NPM and Composer are preinitialized, you can simply remove them.

@@ -3,7 +3,7 @@ namespace ulole\core\classes\util\cookies;
 
 class Cookies {
 
-    public function set($key="", $value="", $time=0, $path="", $domain="", $secure=false, $httponly=false) {
+    public function set($key="", $value="", $time=0, $path="/", $domain="", $secure=false, $httponly=false) {
         return setcookie($key, $value, $time, $path, $domain, $secure, $httponly);
     } 
 

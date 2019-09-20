@@ -17,7 +17,7 @@ class CookieBuilder {
            $secure,
            $httponly;
 
-    public function __construct($key="", $value="", $time=0, $path="", $domain="", $secure=false, $httponly=false) {
+    public function __construct($key="", $value="", $time=0, $path="/", $domain="", $secure=false, $httponly=false) {
         $this->key       =  $key;
         $this->value     =  $value;
         $this->time      =  $time;
