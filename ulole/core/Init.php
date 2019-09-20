@@ -20,11 +20,16 @@ $SQL_DATABASES = [];
 $ULOLE_CONFIG_ENV = "";
 if (file_exists("env.json")) {
     $ULOLE_CONFIG_ENV = json_decode(file_get_contents("env.json"));
+    if (isset($ULOLE_CONFIG_ENV->databases)) {
+        if (file_exists("modules/uloleorm/InitDatabases.php")) {
+            if (class_exists("modules\uloleorm\InitDatabases")) {
+                foreach ($ULOLE_CONFIG_ENV->databases as $db=> $values) {
+                    @modules\uloleorm\InitDatabases::init($db, $values);
+                }
+            }
+        }
+    }
 }
-
-if (file_exists("modules/uloleorm/InitDatabases.php"))
-    if (class_exists("modules\uloleorm\InitDatabases"))
-        @modules\uloleorm\InitDatabases::init();
 
 if (file_exists("initscripts.json")) {
     try {

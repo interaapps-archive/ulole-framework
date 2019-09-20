@@ -12,7 +12,7 @@ class Session {
         $this->createIfNotExists();
         
         if (!$this->loadedSessionPath) 
-            $this->sessionPath = "ulole/storage/sessions/".Cookies::get($name).".session";
+            $this->sessionPath = "storage/sessions/".Cookies::get($name).".session";
         
         $this->loadSessionKeys();
     }
@@ -31,7 +31,7 @@ class Session {
     } 
 
     public function createFileIfNotExists($name) {
-        $path = "ulole/storage/sessions/".$name.".session";
+        $path = "storage/sessions/".$name.".session";
         if (!\file_exists($path)) {
 
             $sessionContents = [
@@ -41,7 +41,7 @@ class Session {
                 "data"=>['_$ulole_LAST_USAGE'=>\time()]
             ];
             $this->loadedSessionPath = true;
-            $this->sessionPath = "ulole/storage/sessions/".$name.".session";
+            $this->sessionPath = "storage/sessions/".$name.".session";
 
             (new Str(json_encode($sessionContents)))->writeFile($path);
         } 
@@ -59,9 +59,9 @@ class Session {
 
     public static function getAll($sessionName = "ulole_session") {
         $out = [];
-        foreach (scandir("ulole/storage/sessions") as $file) {
+        foreach (scandir("storage/sessions") as $file) {
             if ($file != ".." && $file != "." && $file != ".gitignore") {
-                $data = json_decode(file_get_contents("ulole/storage/sessions/".$file));
+                $data = json_decode(file_get_contents("storage/sessions/".$file));
                 if ($data->sessionname == $sessionName)
                     array_push($out, $data->data);
             }
