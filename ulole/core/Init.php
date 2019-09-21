@@ -2,7 +2,7 @@
 
 /*
     Init.php
-    Inititializing configs and more
+    Initializing configs and more
 */
 
 global $ULOLE_CONFIG, $ULOLE_CONFIG_ENV, $SQL_DATABASES;
