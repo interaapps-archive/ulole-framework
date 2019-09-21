@@ -1,4 +1,4 @@
-/* 
+/*
    If you don't want to use this, you can use UloleCompile or write directly into CSS and JS Files (public/assets/js | public/assets/css)
  */
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -18,8 +18,8 @@ module.exports = {
         rules: [{
             test: /\.scss$/,
             use: extractSASS.extract([
-                "css-loader", 
-                "sass-loader" 
+                "css-loader",
+                "sass-loader"
             ])
         }]
     }

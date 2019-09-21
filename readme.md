@@ -43,3 +43,14 @@ We've also got UloleModules. It's a Package Manager made for the UloleFramework 
 - Useful utils
 - Fast
 - Little folder size (1.4 MB [In version 1.0.28])
+
+## Generate
+### database
+```bash
+php cli generate database testtable
+```
+
+### migration
+```bash
+php cli generate migration testtable
+```
