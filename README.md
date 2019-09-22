@@ -1,7 +1,23 @@
 # Ulole Framework (v 1.0.038 Development)
+
+```php
+<?php
+namespace app\controller;
+
+class WelcomeController {
+    /**
+     * Hello world page
+     * 
+     * @return string
+     */
+    public static function about() {
+        return "Hello world!";
+    }
+}
 ```
-This is just the development version. If we are ready soon there is a new version! :D
-```
+
+`This is just the development version. If we are ready soon there is a new version! :D`
+
 ## Installation
 ```bash
 wget --no-cache https://raw.githubusercontent.com/interaapps/uppm/master/uppm -O uppm
@@ -54,3 +70,64 @@ php cli generate database testtable
 ```bash
 php cli generate migration testtable
 ```
+
+## Preview
+
+#### Controller
+```php
+<?php
+namespace app\controller;
+
+class AboutController {
+    /**
+     * Hello world page
+     * 
+     * @return string
+     */
+    public static function about() {
+        return "Hello world!";
+    }
+}
+```
+
+#### Orm
+```php
+<?php
+namespace databases;
+
+use modules\uloleorm\Table;
+
+class UserTable extends Table {
+
+    public $id,
+           $username, 
+           $password;
+
+    public function database() {
+        $this->_table_name_ = "user";
+        $this->__database__ = "main";
+    }
+
+}
+```
+
+#### Migration
+```php
+<?php
+namespace databases\migrate;
+
+use modules\uloleorm\migrate\Migrate;
+
+class UserTable extends Migrate {
+    public function database() {
+        $this->create('user', function($table) {
+            $table->int("id")->ai();
+            $table->string("username");
+            $table->string("password", 155);
+        });
+    }
+}
+```
+
+#### Debug
+![https://i.imgur.com/W8otsxK.png](https://i.imgur.com/W8otsxK.png)

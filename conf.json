@@ -7,6 +7,7 @@
             "email": "my@mail.com"
         }
     ],
+    "debug": "justtestserver",
     "options": {
         "defaultlang": "en",
         "detectlanguage": false
