@@ -11,5 +11,9 @@
     "modules": {
         "interaapps/ulole-orm": ":github"
     },
-    "namespaces": {}
+    "namespaces": {},
+    
+    "build":{
+        "main":"cli"
+    }
 }
