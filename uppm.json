@@ -12,8 +12,21 @@
         "interaapps/ulole-orm": ":github"
     },
     "namespaces": {},
-    
-    "build":{
+    "build": {
         "main":"cli"
+    },
+    "archive": {
+        "ignore": [
+            ".gitignore",
+            ".idea",
+            ".git",
+            "uppm.locks.json"
+        ]
+    },
+    "serve": {
+        "directory": "public",
+        "routerFile": "index.php",
+        "host": "0.0.0.0",
+        "port": 8000
     }
 }
