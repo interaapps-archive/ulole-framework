@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ "HELLO WORLD!" }}</title>
-</head>
-<body>
-    <?#
-        echo "Hello world!";
-        $a = ["a","b"];
-    #?>
+<?# // You can use <?# instead of <?php
+    echo "Hello world!";
+    $a = ["a","b"];
+?>
 
-    @if((false))#
-        hi
-    @else
-        hallool
-    @endif
 
-    @foreach(($a as $v))#
-        {{ $v }}
-    @endforeach
-</body>
-</html>
+<!#-- Including a template file (in directory templates), defines var title to Welcome (Passes it threw) --#>
+@template(("header.php", ["title"=>"Welcome"]))!
+
+@if((false))#
+    hi
+@else
+    hallool
+@endif
+
+@foreach(($a as $v))#
+    {{ $v }}
+@endforeach
+
+@comp(("components/error", ["err"=>"You're not logged in!"]))!
+
+@template(("footer.php"))!
