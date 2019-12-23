@@ -59,6 +59,7 @@ spl_autoload_register(function($class) {
     @include_once "./".str_replace("\\","/",$class).".php";
 });
 
+if (!isset($argv[1])) exit("Function not found :(!");
 
 if ($argv[1] == "server") {
 
@@ -78,8 +79,6 @@ if ($argv[1] == "server") {
     require "ulole/CLI/DevTests.php";
     $CLI->run($argv[1], $argv);
 } elseif ($argv[1] == "repl") {
-      echo "UloleREPL is not finished yet!\n";
-      $runRepl = true;
       require "ulole/CLI/repl.php";
 } elseif ($argv[1] == "generate") {
     require "ulole/CLI/Generate.php";

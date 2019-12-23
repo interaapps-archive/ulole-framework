@@ -1,20 +1,4 @@
 <?php
-/**
- * Not finished yet!
- */
-function repl() {
-    set_error_handler("error");
-    register_shutdown_function("fatal");
-    echo Colors::YELLOW."\n| >>>".Colors::BLUE;
-    $command = readline(" ");
-    echo Colors::ENDC;
-    if ($command == "exit") exit();
-    try {
-        eval("" . $command . ";");
-    } catch (Exception $e) { /**/ }
-    repl();
-}
-
 function error($errno, $errstr, $errfile, $errline) {
     echo Colors::BG_RED.Colors::BLUE." ".$errstr." ".Colors::ENDC;
 }
@@ -26,9 +10,18 @@ function fatal() {
     echo Colors::BG_RED.Colors::BLUE." ".$error["message"]." ".Colors::ENDC;
     repl();
 }
-
-if ($runRepl) {
-    require "ulole/loader.php";
-    loadCore();
-    repl();
+require "ulole/loader.php";
+loadCore();
+while(true) {
+    set_error_handler("error");
+    register_shutdown_function("fatal");
+    echo Colors::YELLOW."\n| >>>".Colors::BLUE;
+    $command = readline(" ");
+    echo Colors::ENDC;
+    if ($command == "exit") exit();
+    try {
+        if ( strpos($command, ";") === false && strpos($command, "return") === false && strpos($command, "echo") === false )
+            $command = "return ".$command;
+        echo eval("" . $command . ";");
+    } catch (Exception $e) { /**/ }
 }
