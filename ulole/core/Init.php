@@ -8,6 +8,7 @@
 global $ULOLE_CONFIG, $ULOLE_CONFIG_ENV, $SQL_DATABASES;
 
 $ULOLE_CONFIG = json_decode(file_get_contents("conf.json"));
+\ulole\Config::$config = $ULOLE_CONFIG;
 
 \ulole\core\classes\Lang::setLang((isset($ULOLE_CONFIG->options->defaultlang)) ? $ULOLE_CONFIG->options->defaultlang : "en");
 
@@ -20,6 +21,7 @@ $SQL_DATABASES = [];
 $ULOLE_CONFIG_ENV = "";
 if (file_exists("env.json")) {
     $ULOLE_CONFIG_ENV = json_decode(file_get_contents("env.json"));
+    \ulole\Config::$env = $ULOLE_CONFIG_ENV;
     if (isset($ULOLE_CONFIG_ENV->databases)) {
         if (file_exists("modules/uloleorm/InitDatabases.php")) {
             if (class_exists("modules\uloleorm\InitDatabases")) {

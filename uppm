@@ -24,20 +24,20 @@ define("UPPMINFO", [
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * Tools
- *
+ * 
  * @author InteraApps
  */
 
-class Tools {
+ class Tools {
 
     public static function getStringBetween($string, $start, $end){
         $string = $string;
         $ini = @strpos($string, $start);
         $ini += strlen($start);
         if ($end=="") {
-            return substr($string, $ini, strlen($string));
+          return substr($string, $ini, strlen($string));
         }
         $len = strpos($string, $end, $ini) - $ini;
         return substr($string , ($start == "") ? 0 : $ini , $len);
@@ -46,9 +46,9 @@ class Tools {
     public static function deleteDir($dirPath, $ignore="NON++++++++++++NON+++++++++++++++NON") {
         if (!is_dir($dirPath))
             return;
-
+        
         $files = scandir($dirPath);
-        foreach ($files as $file)
+        foreach ($files as $file) 
             if ($file != "." && $file != ".." && $file != $ignore) {
                 if (is_dir($dirPath."/".$file)) {
                     self::deleteDir($dirPath."/".$file);
@@ -57,71 +57,71 @@ class Tools {
                         unlink($dirPath."/".$file);
                 }
             }
-
+            
         rmdir($dirPath);
     }
 
-    public static function statusIndicator($done, $total, $size=30) {
+     public static function statusIndicator($done, $total, $size=30) {
 
-        static $start_time;
+         static $start_time;
 
-        if($done > $total) return;
+         if($done > $total) return;
 
-        if(empty($start_time)) $start_time=time();
+         if(empty($start_time)) $start_time=time();
 
-        $perc=(double)($done/$total);
+         $perc=(double)($done/$total);
 
-        $bar=floor($perc*$size);
+         $bar=floor($perc*$size);
 
-        $status_bar="\r┋";
-        $status_bar.=str_repeat(Colors::GREEN."▉".Colors::ENDC, $bar);
-        if($bar<$size){
-            $status_bar.=Colors::YELLOW."░".Colors::ENDC;
-            $status_bar.=str_repeat(Colors::YELLOW."░".Colors::ENDC, $size-$bar);
-        } else {
-            $status_bar .= Colors::GREEN."▉".Colors::ENDC;
-        }
+         $status_bar="\r┋";
+         $status_bar.=str_repeat(Colors::GREEN."▉".Colors::ENDC, $bar);
+         if($bar<$size){
+             $status_bar.=Colors::YELLOW."░".Colors::ENDC;
+             $status_bar.=str_repeat(Colors::YELLOW."░".Colors::ENDC, $size-$bar);
+         } else {
+             $status_bar .= Colors::GREEN."▉".Colors::ENDC;
+         }
 
-        $status_bar.="┋ ".number_format($perc*100, 0)." %  $done/$total";
-
-
-        echo "$status_bar  ";
-
-        flush();
-
-    }
+         $status_bar.="┋ ".number_format($perc*100, 0)." %  $done/$total";
 
 
-    function copyDir($src, $dst) {
-        $dir = opendir($src);
-        @mkdir($dst);
+         echo "$status_bar  ";
 
-        while( $file = readdir($dir) ) {
-            if (( $file != '.' ) && ( $file != '..' )) {
-                if ( is_dir($src . '/' . $file) ) {
-                    self::copyDir($src . '/' . $file, $dst . '/' . $file);
-                }
-                else {
-                    copy($src . '/' . $file, $dst . '/' . $file);
-                }
-            }
-        }
-        closedir($dir);
-    }
+         flush();
 
-}
+     }
 
-?>
+
+     function copyDir($src, $dst) {
+         $dir = opendir($src);
+         @mkdir($dst);
+
+         while( $file = readdir($dir) ) {
+             if (( $file != '.' ) && ( $file != '..' )) {
+                 if ( is_dir($src . '/' . $file) ) {
+                     self::copyDir($src . '/' . $file, $dst . '/' . $file);
+                 }
+                 else {
+                     copy($src . '/' . $file, $dst . '/' . $file);
+                 }
+             }
+         }
+         closedir($dir);
+     }
+
+ }
+
+ ?>
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * INIT
- *
+ * 
  * @author InteraApps
  */
 
-class Init {
+ class Init {
 
     public static function initFromCLI() {
         $prefix = "\nUPPM INIT: ";
@@ -151,7 +151,7 @@ class Init {
         $keywords = explode(',', readline());
 
         self::initProject($name, $version, $description, $author, $keywords);
-
+        
     }
 
     public static function initProject(
@@ -170,23 +170,23 @@ class Init {
         file_put_contents("uppm.json", json_encode($file, JSON_PRETTY_PRINT));
     }
 
-}
-?>
+ }
+ ?>
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * Colors
  * Using colors in the CLI!
- *
+ * 
  * @author InteraApps
  */
 
-class Configs {
+ class Configs {
     public static function getLockFile() {
         if (file_exists("uppm.locks.json"))
             return json_decode(file_get_contents("uppm.locks.json"));
-
+        
         file_put_contents("uppm.locks.json",'
         {
             "init_scripts": [
@@ -209,7 +209,7 @@ class Configs {
     public static function getNPPMFile() {
         if (file_exists("uppm.json"))
             return json_decode(file_get_contents("uppm.json"));
-
+        
         file_put_contents("uppm.json",'
         {
             "name": "abc",
@@ -227,25 +227,25 @@ class Configs {
         ');
         return json_decode(file_get_contents("uppm.json"));
     }
-}
-?>
+ }
+ ?>
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * Install
- *
+ * 
  * @author InteraApps
  */
 
-class Install {
+ class Install {
 
     private $downloadUrl,
-        $type,
-        $enddir = false,
-        $webContext,
-        $name,
-        $version;
+            $type,
+            $enddir = false,
+            $webContext,
+            $name,
+            $version;
 
     public function __construct($name, $version, $output=true) {
         $this->name    = $name;
@@ -365,7 +365,7 @@ class Install {
                     $enddir = "modules/".$tempuppmconf->name;
                 if (is_dir($enddir) && $enddir!="./" )
                     Tools::deleteDir($enddir);
-
+                
                 if (!is_dir("modules"))
                     mkdir("modules");
 
@@ -546,14 +546,14 @@ class Install {
                 echo "Version not found!";
                 return "\n";
             }
-
+    
             if (isset($list->{$name}->{$version})) {
                 $config = Configs::getNPPMFile();
                 if (is_array($config->modules))
                     $config->modules = [$name=>$version];
                 else
                     $config->modules->{$name} = $version;
-
+                
                 file_put_contents("uppm.json", json_encode($config, JSON_PRETTY_PRINT));
                 (new Install($name, $version))->download();
             } else {
@@ -562,15 +562,15 @@ class Install {
         }
     }
 
-}
+ }
 
-?>
+ ?>
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * INIT
- *
+ * 
  * @author InteraApps
  */
 
@@ -608,11 +608,11 @@ class Build {
 
         Colors::info("BuildFromDirectory: ".$this->directory);
         $phar->buildFromDirectory(getcwd()."/".$this->directory, '/^(?!(.*uppm_target))'.(function(){
-                $out = "";
-                foreach ($this->ignoredDirectories as $directory)
-                    $out .= '(?!(.*'.str_replace("/","\\/",$directory).'))';
-                return $out;
-            })().'(.*)$/i');
+            $out = "";
+            foreach ($this->ignoredDirectories as $directory)
+                $out .= '(?!(.*'.str_replace("/","\\/",$directory).'))';
+            return $out;
+        })().'(.*)$/i');
 
 
         if ($this->main !== false) {
@@ -775,79 +775,79 @@ class Archive {
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * Colors
  * Using colors in the CLI!
- *
+ * 
  * @author InteraApps
  */
 
-class Colors {
-    public const HEADER = "\033[95m",
-        OKBLUE = "\033[94m",
-        OKGREEN = "\033[92m",
-        WARNING = "\033[93m",
-        FAIL = "\033[91m",
-        ENDC = "\033[0m",
-        BOLD = "\033[1m",
-        UNDERLINE = "\033[4m",
-        RED = "\033[31m",
-        BLUE = "\033[34m",
-        YELLOW = "\033[33m",
-        TURQUIOUS = "\033[36m",
-        GREEN = "\033[32m",
-        BLINK = "\033[5m",
-        BG_RED = "\033[41m",
-        BG_BLUE = "\033[44m",
-        BG_GREEN = "\033[42m",
-        BG_YELLOW = "\033[43m",
-        BG_BLACK = "\033[40m";
-
+ class Colors {
+     public const HEADER = "\033[95m",
+                  OKBLUE = "\033[94m",
+                  OKGREEN = "\033[92m",
+                  WARNING = "\033[93m",
+                  FAIL = "\033[91m",
+                  ENDC = "\033[0m",
+                  BOLD = "\033[1m",
+                  UNDERLINE = "\033[4m",
+                  RED = "\033[31m",
+                  BLUE = "\033[34m",
+                  YELLOW = "\033[33m",
+                  TURQUIOUS = "\033[36m",
+                  GREEN = "\033[32m",
+                  BLINK = "\033[5m",
+                  BG_RED = "\033[41m",
+                  BG_BLUE = "\033[44m",
+                  BG_GREEN = "\033[42m",
+                  BG_YELLOW = "\033[43m",
+                  BG_BLACK = "\033[40m";
+        
     public const PREFIX_DONE = "\033[92m᮰ Done\033[0m: ",
-        PREFIX_WARN = "\033[93m᮰ WARNING\033[0m: ",
-        PREFIX_INFO = "\033[36m᮰ INFO\033[0m: ",
-        PREFIX_ERROR = "\033[91m᮰ ERROR\033[0m: ";
+                 PREFIX_WARN = "\033[93m᮰ WARNING\033[0m: ",
+                 PREFIX_INFO = "\033[36m᮰ INFO\033[0m: ",
+                 PREFIX_ERROR = "\033[91m᮰ ERROR\033[0m: ";
 
     public static function info($str){
         echo self::PREFIX_INFO.$str.self::ENDC."\n";
     }
 
-    public static function warning($str){
-        echo self::PREFIX_WARN.$str.self::ENDC."\n";
-    }
+     public static function warning($str){
+         echo self::PREFIX_WARN.$str.self::ENDC."\n";
+     }
 
-    public static function done($str){
-        echo self::PREFIX_DONE.$str.self::ENDC."\n";
-    }
+     public static function done($str){
+         echo self::PREFIX_DONE.$str.self::ENDC."\n";
+     }
 
-    public static function error($str){
-        echo self::PREFIX_ERROR.$str.self::ENDC."\n";
-    }
-}
+     public static function error($str){
+         echo self::PREFIX_ERROR.$str.self::ENDC."\n";
+     }
+ }
 
-?>
+ ?>
 <?php
 /**
  * - ULOLEPHPPACKAGEMANAGER -
- *
+ * 
  * CLI
- *
+ * 
  * @author InteraApps
  */
 
-class CLI {
+ class CLI {
     public $commands = [];
     public $descriptions = [];
     /**
      * Change the not found errormessage
      */
     public $errorMessage;
-    /**
+    /** 
      * Shows a list with all commands on function not found error
      */
     public $showArgsOnError=true;
 
-
+    
     /**
      * Register a new command
      * @param String function-name (Command)
@@ -867,12 +867,12 @@ class CLI {
             $function = ($this->commands[$run]);
             echo $function($run);
         } else {
-            if ($this->errorMessage != null)
+            if ($this->errorMessage != null) 
                 echo $this->errorMessage;
             else
                 echo Colors::PREFIX_ERROR."Function \"".$run."\" not found!\n";
-
-
+            
+            
             if ($this->showArgsOnError) {
                 $showArgs = Colors::PREFIX_DONE."Those are some valid functions: ";
                 foreach ($this->commands as $command=>$value) {
@@ -884,16 +884,16 @@ class CLI {
         }
     }
 
-    public function getCommands(): array {
-        return $this->commands;
-    }
+     public function getCommands(): array {
+         return $this->commands;
+     }
 
-    public function getDescriptions(): array {
-        return $this->descriptions;
-    }
-}
+     public function getDescriptions(): array {
+         return $this->descriptions;
+     }
+ }
 
-?>
+ ?>
 <?php
 ini_set('phar.readonly',0);
 $CLI = new CLI(1);
