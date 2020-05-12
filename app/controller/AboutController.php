@@ -14,7 +14,7 @@ class AboutController {
         // Gives a JSON back
         return [
             "done" => true,
-            "param"=> Request::POST("test")
+            "param"=> defaultValue(Request::POST("test"), "test")
         ]; // You can also use Response::json([...]);
     }
 

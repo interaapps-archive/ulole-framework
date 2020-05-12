@@ -1,4 +1,4 @@
-<?php if (file_exists("." . $_SERVER['REQUEST_URI'])) return false; ?><?php
+<?php if (file_exists("." . $_SERVER['REQUEST_URI'])) return false; $TESTSERVER = true; ?><?php
 chdir('..');
 
 // IMPORTING STANDARD LIBS

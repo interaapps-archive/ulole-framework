@@ -8,14 +8,14 @@ function fatal() {
     register_shutdown_function("fatal");
     $error = error_get_last();
     echo Colors::BG_RED.Colors::BLUE." ".$error["message"]." ".Colors::ENDC;
-    repl();
+    //repl();
 }
 require "ulole/loader.php";
 loadCore();
 while(true) {
     set_error_handler("error");
     register_shutdown_function("fatal");
-    echo Colors::YELLOW."\n| >>>".Colors::BLUE;
+    echo Colors::YELLOW."\n| >>>".Colors::ENDC;
     $command = readline(" ");
     echo Colors::ENDC;
     if ($command == "exit") exit();

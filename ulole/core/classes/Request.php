@@ -13,7 +13,10 @@ class Request {
     public static function POST($param=false) {
         if ($param === false)
             return $_POST;
-        return $_POST[$param];
+
+        if (isset($_POST[$param]))
+            return $_POST[$param];
+        return null;
     }
 
     public static function GET($param=false) {

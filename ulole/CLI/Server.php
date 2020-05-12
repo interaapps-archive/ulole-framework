@@ -11,7 +11,7 @@ if (!file_exists("conf.json"))
     echo $warn_prefix." conf.json not found!\n";
 
 file_put_contents("public/testserver.php",
-'<?php if (file_exists("." . $_SERVER[\'REQUEST_URI\'])) return false; ?>'.file_get_contents("public/index.php"));
+'<?php if (file_exists("." . $_SERVER[\'REQUEST_URI\'])) return false; $TESTSERVER = true; ?>'.file_get_contents("public/index.php"));
 
 $exec= 'cd public
 php -S 0.0.0.0:8000 -t ./ testserver.php';

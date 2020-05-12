@@ -5,12 +5,13 @@ use modules\uloleorm\Table;
 class TestTable extends Table {
 
     public $username, 
-           $password;
+           $password,
+           $enumTest;
 
     public function database() {
-        $this->_table_name_ = "User";
-        // The __database__ default value is "main"
-        $this->__database__ = "main";
+        $this->setTable("user");
+        // The default value is "main"
+        $this->setDatabase("main");
     }
 
 }

@@ -1,6 +1,6 @@
 
 <div id="error">
-    <p>{{$err}}</p>
+    <p><?php echo ($err); ?></p>
 </div>
 
 
